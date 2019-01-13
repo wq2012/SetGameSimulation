@@ -46,39 +46,14 @@ Use a larger value for `--num_trials` for more accurate estimations, or use
 * 1M trials take about 2min.
 * 10M trials take about 40min.
 
-<!-- ### Proof
+### Answer
 
-First, let's introduce a lemma (from reference [1]).
-
-> **Lemma.** For any pair of cards `(A,B)`, from the remaining 79 cards,
-there exists a unique card C such that `(A,B,C)` forms a SET.
-
-With this lemma, let's try to increase *k* such that there are no SETs in these
-*k* cards.
-
-* For the first two cards:
-  * We take any two cards: `C1` and `C2`.
-  * There are `79` remaining cards.
-* For the 3rd card:
-  * One of the remaining cards will form a SET with `(C2,C1)`.
-  * Let's remove it, and choose one from `79-1` cards: `C3`.
-  * After this step, there are `79-2` remaining cards.
-* For the 4th card:
-  * Two of the remaining cards will form a SET with `(C3,C2)` or `(C3,C1)`.
-  * Let's remove them, and choose one from `79-2-2` remaining cards: `C4`.
-  * After this step, there are `79-2-3` remaining cards.
-* For the 5th card:
-  * Three of the remaining cards will form a SET with `(C4,C3)` or `(C4,C2)`
-    or `(C4,C1)`.
-  * Let's remove them, and choose one from `79-2-3-3` remaining cards: `C5`.
-  * After this step, there are `79-2-3-4` remaining cards.
-* ......
-* For the *k*th card:
-  * We must choose a card from these many cards:
-    `79-2-3-4-5-...-(k-4)-(k-3)-(k-2)-(k-2)=81-k(k-1)/2` -->
+The [answer](http://math.stackexchange.com/q/203146) is when *k*=21, there must exist a SET.
 
 ## References
 
 1. [SET by BRIAN CONREY AND BRIANNA DONALDSON](https://www.mathteacherscircle.org/assets/session-materials/BConreyBDonaldsonSET.pdf)
 2. [The Odds of Finding a SET in The Card Game SET](http://norvig.com/SET.html)
 3. [SETs and Anti-SETs: The Math Behind the Game of SET](http://www-personal.umich.edu/~charchan/SET.pdf)
+4. [THE CARD GAME SET](https://web.archive.org/web/20130605073741/http://www.math.rutgers.edu/~maclagan/papers/set.pdf)
+5. [Set (game) by Alexander Katz](https://brilliant.org/wiki/set-game/)
