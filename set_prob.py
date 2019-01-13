@@ -4,6 +4,7 @@ from __future__ import print_function
 
 import argparse
 import itertools
+import multiprocessing
 import random
 import time
 
@@ -52,23 +53,27 @@ def has_set(nums):
 
 def probability_set_approx(k, num_trials=1000000):
     """Probability of k cards containing a set, approximated."""
+    start_time = time.time()
     count = 0
     for _ in range(num_trials):
         nums = random.sample(range(81), k)
         if has_set(nums):
             count += 1
-    return count, num_trials
+    end_time = time.time()
+    return count, num_trials, end_time - start_time
 
 
 def probability_set(k):
     """Probability of k cards containing a set, exact number."""
+    start_time = time.time()
     count = 0
     total = 0
     for nums in itertools.combinations(range(81), k):
         total += 1
         if has_set(nums):
             count += 1
-    return count, total
+    end_time = time.time()
+    return count, total, end_time - start_time
 
 
 def main():
@@ -94,15 +99,15 @@ def main():
     args = parser.parse_args()
 
     for k in range(args.start, args.end + 1):
-        start_time = time.time()
+
         if args.num_trials <= 0:
-            count, total = probability_set(k)
+            count, total, duration = probability_set(k)
         else:
-            count, total = probability_set_approx(k, args.num_trials)
-        end_time = time.time()
+            count, total, duration = probability_set_approx(k, args.num_trials)
+
         print("Probability of {} cards containing a set: {} / {} = {}, "
               "time spent: {}s".format(
-                  k, count, total, count / total, end_time - start_time))
+                  k, count, total, count / total, duration))
 
 
 if __name__ == "__main__":
