@@ -29,7 +29,7 @@ Use a larger value for `--num_trials` for more accurate estimations, or use
 
 ### Results
 
-#### 10000 trials
+#### 100K trials
 
 | k     | probability        |
 |-------|--------------------|
@@ -39,6 +39,18 @@ Use a larger value for `--num_trials` for more accurate estimations, or use
 | 15    | 0.99959            |
 | 16    | 0.999999           |
 | 17    | 1.0                |
+| 18    | 1.0                |
+
+#### 1M trials
+
+| k     | probability        |
+|-------|--------------------|
+| 12    | 0.967979           |
+| 13    | 0.990034           |
+| 14    | 0.997674           |
+| 15    | 0.99966            |
+| 16    | 0.999962           |
+| 17    | 0.999999           |
 | 18    | 1.0                |
 
 ## References
