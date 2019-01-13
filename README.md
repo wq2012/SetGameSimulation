@@ -39,9 +39,9 @@ Use a larger value for `--num_trials` for more accurate estimations, or use
 | 17    | 1.0               | 0.999999        | 0.9999989        |
 | 18    | 1.0               | 1.0             | 1.0              |
 
-* 100K trials takes about  26s.
-* 1M trials takes about 2min.
-* 10 trials takes about 40min.
+* 100K trials take about  26s.
+* 1M trials take about 2min.
+* 10 trials take about 40min.
 
 ## References
 
