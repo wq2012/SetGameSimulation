@@ -11,7 +11,10 @@ The rules can be found here:
 
 ## Least number of cards to guarantee a SET
 
-Question: If *k* cards are dealt, is it possible that there's no SETs from these cards?
+### Problem statement
+
+**Question:** If *k* cards are dealt, is it possible that there are no SETs
+from these cards?
 
 What's the smallest number of *k* to guarantee the existence of a SET?
 
@@ -22,12 +25,12 @@ python set_prob.py --start=12 --end=18 --num_trials=100000
 ```
 
 This will compute the probabilities of *k* cards containing a SET, where
-*k=12, 13, ..., 18*, and for each *k* a try 100,000 times.
+*k=12, 13, ..., 18*. For each *k*, we try 100,000 times.
 
 Use a larger value for `--num_trials` for more accurate estimations, or use
-`--num_trials=0` for an exact result (which can be very slow).
+`--num_trials=0` for an exact result (which will take forever).
 
-### Results
+### Simulation results
 
 | *k*   | prob: 100K trials | prob: 1M trials | prob: 10M trials |
 |-------|-------------------|-----------------|------------------|
@@ -43,8 +46,39 @@ Use a larger value for `--num_trials` for more accurate estimations, or use
 * 1M trials take about 2min.
 * 10M trials take about 40min.
 
+<!-- ### Proof
+
+First, let's introduce a lemma (from reference [1]).
+
+> **Lemma.** For any pair of cards `(A,B)`, from the remaining 79 cards,
+there exists a unique card C such that `(A,B,C)` forms a SET.
+
+With this lemma, let's try to increase *k* such that there are no SETs in these
+*k* cards.
+
+* For the first two cards:
+  * We take any two cards: `C1` and `C2`.
+  * There are `79` remaining cards.
+* For the 3rd card:
+  * One of the remaining cards will form a SET with `(C2,C1)`.
+  * Let's remove it, and choose one from `79-1` cards: `C3`.
+  * After this step, there are `79-2` remaining cards.
+* For the 4th card:
+  * Two of the remaining cards will form a SET with `(C3,C2)` or `(C3,C1)`.
+  * Let's remove them, and choose one from `79-2-2` remaining cards: `C4`.
+  * After this step, there are `79-2-3` remaining cards.
+* For the 5th card:
+  * Three of the remaining cards will form a SET with `(C4,C3)` or `(C4,C2)`
+    or `(C4,C1)`.
+  * Let's remove them, and choose one from `79-2-3-3` remaining cards: `C5`.
+  * After this step, there are `79-2-3-4` remaining cards.
+* ......
+* For the *k*th card:
+  * We must choose a card from these many cards:
+    `79-2-3-4-5-...-(k-4)-(k-3)-(k-2)-(k-2)=81-k(k-1)/2` -->
+
 ## References
 
-* [SET by BRIAN CONREY AND BRIANNA DONALDSON](https://www.mathteacherscircle.org/assets/session-materials/BConreyBDonaldsonSET.pdf)
-* [The Odds of Finding a SET in The Card Game SET](http://norvig.com/SET.html)
-* [SETs and Anti-SETs: The Math Behind the Game of SET](http://www-personal.umich.edu/~charchan/SET.pdf)
+1. [SET by BRIAN CONREY AND BRIANNA DONALDSON](https://www.mathteacherscircle.org/assets/session-materials/BConreyBDonaldsonSET.pdf)
+2. [The Odds of Finding a SET in The Card Game SET](http://norvig.com/SET.html)
+3. [SETs and Anti-SETs: The Math Behind the Game of SET](http://www-personal.umich.edu/~charchan/SET.pdf)
