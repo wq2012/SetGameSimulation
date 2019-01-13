@@ -2,7 +2,7 @@
 
 ## Introduction
 
-SET is a board game where there are 81 different cards.
+[SET](https://en.wikipedia.org/wiki/Set_(card_game)) ([神奇形色牌](https://zh.wikipedia.org/wiki/%E7%A5%9E%E5%A5%87%E5%BD%A2%E8%89%B2%E7%89%8C)) is a board game where there are 81 different cards.
 
 The rules can be found here:
 
