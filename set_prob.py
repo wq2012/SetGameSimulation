@@ -76,6 +76,21 @@ def probability_set(k):
     return count, total, end_time - start_time
 
 
+class Task(object):
+
+    def __init__(self, num_trials):
+        self.num_trials = num_trials
+
+    def __call__(self, k):
+        if self.num_trials <= 0:
+            count, total, duration = probability_set(k)
+        else:
+            count, total, duration = probability_set_approx(k, self.num_trials)
+        print("Probability of {} cards containing a set: {} / {} = {}, "
+              "time spent: {}s".format(
+                  k, count, total, count / total, duration))
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -96,18 +111,17 @@ def main():
              "the more accurate the result is. "
              "If this number is zero or negative, we will use accurate "
              "simulation instead of approximated simulation.")
+    parser.add_argument(
+        "--num_processes",
+        default=8,
+        type=int,
+        help="Number of processes for multiprocessing.")
     args = parser.parse_args()
 
-    for k in range(args.start, args.end + 1):
-
-        if args.num_trials <= 0:
-            count, total, duration = probability_set(k)
-        else:
-            count, total, duration = probability_set_approx(k, args.num_trials)
-
-        print("Probability of {} cards containing a set: {} / {} = {}, "
-              "time spent: {}s".format(
-                  k, count, total, count / total, duration))
+    # use multiple processes
+    pool = multiprocessing.Pool(args.num_processes)
+    task = Task(args.num_trials)
+    pool.map(task, range(args.start, args.end + 1))
 
 
 if __name__ == "__main__":
